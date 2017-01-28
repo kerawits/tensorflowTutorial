@@ -64,11 +64,12 @@ sess = tf.Session()
 sess.run(init)
 
 MAXSTEP = 10000
+DECAYSPEED = 2000
 lrmin = 0.0001
 lrmax = 0.003
 for i in range(MAXSTEP):
     batch_X, batch_Y = mnist.train.next_batch(MINIBATCH)
-    lr = lrmin + (lrmax - lrmin) * math.exp(-i / MAXSTEP)
+    lr = lrmin + (lrmax - lrmin) * math.exp(-i / DECAYSPEED)
 
     train_data = {X: batch_X, Y_: batch_Y, learning_rate: lr, pkeep: 0.75}
 
